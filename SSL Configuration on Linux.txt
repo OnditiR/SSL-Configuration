@@ -1,0 +1,23 @@
+SSL:
+
+Generate CSR:
+openssl req -new -newkey rsa:2048 -nodes -keyout exampledomain.com.key -out exampledomain.com.csr
+
+Configure the Certificate:
+Copy the generated CSR into the cerfication configuration path on the hosting platform.
+Confirm the Cerfiticate then download the .ca and .crt files
+Copy the files(.ca and .crt) to the Cerficate path on your server.
+
+Assign SSL:
+cat exampledomain.com.crt exampledomain.com.ca >> exampledomain-ssl-bundle.crt
+
+
+Check Web servers(Nginx/Apache) Status.
+
+nginx -t
+
+Reload Web servers:
+systemctl restart nginx
+       or 
+systemctl httpd -t
+
